@@ -49,16 +49,13 @@ X = [ones(m, 1) X];
 %                 initial_theta, options);
 %
 
-
-
-
-
-
-
-
-
-
-
+% !! there a 10 types of labels, but the domain of y is 0/1
+for i=1:num_labels
+    options = optimset('GradObj','on','MaxIter',50);
+    initial_theta = all_theta(i,:)';
+    [theta] = fmincg(@(t)(lrCostFunction(t,X,y==i,lambda)),initial_theta,options);
+    all_theta(i,:) = theta';
+end
 
 % =========================================================================
 
